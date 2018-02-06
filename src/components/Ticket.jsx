@@ -11,4 +11,10 @@ function Ticket(){
    );
 }
 
+Ticket.propTypes = {
+  names: PropTypes.string.isRequired,
+  location: PropTypes.string,
+  issue: PropTypes.string
+};
+
 export default Ticket;
