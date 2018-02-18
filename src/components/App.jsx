@@ -3,6 +3,7 @@ import TicketList from './TicketList';
 import Header from './Header';
 import { Switch, Route } from 'react-router-dom';
 import Moment from 'moment';
+import Admin from './Admin';
 import NewTicketControl from './NewTicketControl';
 
 class App extends React.Component{
@@ -50,6 +51,7 @@ class App extends React.Component{
         <Switch>
           <Route exact path='/' render={()=><TicketList ticketList={this.state.masterTicketList} />} />
           <Route path='/newticket' render={()=><NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />
+          <Route path='/admin' render={(props)=><Admin ticketList={this.state.masterTicketList} currentRouterPath={props.location.pathname}/>} />
         </Switch>
       </div>
     );
