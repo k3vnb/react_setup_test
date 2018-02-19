@@ -7,13 +7,15 @@ import Admin from './Admin';
 import NewTicketControl from './NewTicketControl';
 
 class App extends React.Component{
-
+//there is only one state object, w/ multiple key-value pairs. We will mutate individual state slices.
   constructor(props) {
     super(props);
     this.state = {
-      masterTicketList: []
+      masterTicketList: [],
+      selectedTicket: null
     };
     this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
+    this.handleChangingSelectedTicket = this.handleChangingSelectedTicket.bind(this);
   }
 
   componentDidMount(){
@@ -28,20 +30,24 @@ class App extends React.Component{
   }
 
   updateTicketElapsedWaitTime(){
-    console.log("check");
     let newMasterTicketList = this.state.masterTicketList.slice();
     newMasterTicketList.forEach((ticket) =>
       ticket.formattedWaitTime = (ticket.timeOpen).fromNow(true)
     );
     this.setState({masterTicketList: newMasterTicketList})
-  }
+  };
+
+  handleChangingSelectedTicket(ticket){
+    this.setState({selectedTicket: ticket});
+    alert(`Selected ${this.state.selectedTicket.names}`)
+  };
 
   handleAddingNewTicketToList(newTicket){
     let newMasterTicketList = this.state.masterTicketList.slice();
     newTicket.formattedWaitTime = (newTicket.timeOpen).fromNow(true);
     newMasterTicketList.push(newTicket);
     this.setState({masterTicketList: newMasterTicketList});
-  }
+  };
 
 
   render(){
@@ -51,7 +57,8 @@ class App extends React.Component{
         <Switch>
           <Route exact path='/' render={()=><TicketList ticketList={this.state.masterTicketList} />} />
           <Route path='/newticket' render={()=><NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />
-          <Route path='/admin' render={(props)=><Admin ticketList={this.state.masterTicketList} currentRouterPath={props.location.pathname}/>} />
+          <Route path='/admin' render={(props)=><Admin ticketList={this.state.masterTicketList} currentRouterPath={props.location.pathname}
+          onTicketSelection={this.handleChangingSelectedTicket}/>} />
         </Switch>
       </div>
     );

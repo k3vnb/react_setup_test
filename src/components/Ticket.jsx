@@ -12,7 +12,7 @@ function Ticket(props){
 
   if (props.currentRouterPath === '/admin') {
     return (
-      <div onClick={() => {alert(`hey, clickedy ${props.names}`)}}>
+      <div onClick={() => {props.onTicketSelection({names: props.names, location: props.location, issue: props.issue, formattedWaitTime: props.formattedWaitTime});}}>
       {ticketInfo}
     </div>
     );
@@ -30,7 +30,8 @@ Ticket.propTypes = {
   location: PropTypes.string,
   issue: PropTypes.string,
   formattedWaitTime: PropTypes.string.isRequired,
-  currentRouterPath: PropTypes.string
+  currentRouterPath: PropTypes.string,
+  onTicketSelection: PropTypes.func
 };
 
 export default Ticket;
