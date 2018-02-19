@@ -34,20 +34,19 @@ class App extends React.Component{
     newMasterTicketList.forEach((ticket) =>
       ticket.formattedWaitTime = (ticket.timeOpen).fromNow(true)
     );
-    this.setState({masterTicketList: newMasterTicketList})
-  };
+    this.setState({masterTicketList: newMasterTicketList});
+  }
 
   handleChangingSelectedTicket(ticket){
     this.setState({selectedTicket: ticket});
-    alert(`Selected ${this.state.selectedTicket.names}`)
-  };
+  }
 
   handleAddingNewTicketToList(newTicket){
     let newMasterTicketList = this.state.masterTicketList.slice();
     newTicket.formattedWaitTime = (newTicket.timeOpen).fromNow(true);
     newMasterTicketList.push(newTicket);
     this.setState({masterTicketList: newMasterTicketList});
-  };
+  }
 
 
   render(){
@@ -58,7 +57,8 @@ class App extends React.Component{
           <Route exact path='/' render={()=><TicketList ticketList={this.state.masterTicketList} />} />
           <Route path='/newticket' render={()=><NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />
           <Route path='/admin' render={(props)=><Admin ticketList={this.state.masterTicketList} currentRouterPath={props.location.pathname}
-          onTicketSelection={this.handleChangingSelectedTicket}/>} />
+          onTicketSelection={this.handleChangingSelectedTicket}
+          selectedTicket={this.state.selectedTicket}/>} />
         </Switch>
       </div>
     );
