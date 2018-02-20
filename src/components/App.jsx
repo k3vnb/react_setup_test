@@ -2,7 +2,7 @@ import React from 'react';
 import TicketList from './TicketList';
 import Header from './Header';
 // import { v1 } from 'uuid';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
 import Admin from './Admin';
@@ -85,4 +85,4 @@ App.propTypes = {
   masterTicketList: PropTypes.object
 };
 
-export default connect(mapStateToProps) (App);
+export default withRouter(connect(mapStateToProps) (App));
