@@ -1,6 +1,7 @@
 import React from 'react';
 import TicketList from './TicketList';
 import Header from './Header';
+import { v1 } from 'uuid';
 import { Switch, Route } from 'react-router-dom';
 import Moment from 'moment';
 import Admin from './Admin';
@@ -46,15 +47,17 @@ class App extends React.Component{
 
 //Object.assign creates copies of objects & adds new content to those copies in a single method call. It takes 3 args: ({target}, source obj/slice of state we're updating, source obj, source obj/single key-val pair, newTicket.id is the key, and the entire newTicket obj is the value)
   handleAddingNewTicketToList(newTicket){
+    let newTicketId = v1();
     let newMasterTicketList = Object.assign({}, this.state.masterTicketList, {
-      [newTicket.id]: newTicket
+      [newTicketId]: newTicket
     });
-    newMasterTicketList[newTicket.id].formattedWaitTime = newMasterTicketList[newTicket.id].timeOpen.fromNow(true);
+    newMasterTicketList[newTicketId].formattedWaitTime = newMasterTicketList[newTicketId].timeOpen.fromNow(true);
     this.setState({masterTicketList: newMasterTicketList});
   }
 
 
   render(){
+    console.table(this.state.masterTicketList);
     return (
       <div>
         <Header/>
