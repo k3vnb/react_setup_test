@@ -1,6 +1,6 @@
 import React from 'react';
 import Moment from 'moment';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 function NewTicketForm(props){
@@ -21,8 +21,9 @@ function NewTicketForm(props){
         timeOpen: new Moment()
       };
       dispatch(action);
-      //this dispatches action to our ticket-list-reducer.js 'ADD_TICKET' block
-      props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, timeOpen: new Moment()});
+      //above dispatches action to our ticket-list-reducer.js 'ADD_TICKET' block
+      //below is no longer necessary
+      // props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, timeOpen: new Moment()});
       _names.value = '';
       _location.value = '';
       _issue.value = '';
@@ -51,9 +52,9 @@ function NewTicketForm(props){
   );
 }
 
-NewTicketForm.propTypes = {
-  onNewTicketCreation: PropTypes.func
-};
+// NewTicketForm.propTypes = {
+//   onNewTicketCreation: PropTypes.func
+// }; <-- gone w/ React-Redux refactor
 
 // NewTicketForm = connect()(NewTicketForm);
 // export default NewTicketForm;
