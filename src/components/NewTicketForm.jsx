@@ -10,7 +10,18 @@ function NewTicketForm(props){
   let _issue = null;
 
   function handleNewTicketFormSubmission(event) {
+    const { dispatch } = props;
       event.preventDefault();
+      const action = {
+        type: 'ADD_TICKET',
+        id: null,
+        names: _names.value,
+        location: _location.value,
+        issue: _issue.value,
+        timeOpen: new Moment()
+      };
+      dispatch(action);
+      //this dispatches action to our ticket-list-reducer.js 'ADD_TICKET' block
       props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, timeOpen: new Moment()});
       _names.value = '';
       _location.value = '';
