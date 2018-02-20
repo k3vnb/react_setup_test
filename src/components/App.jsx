@@ -3,14 +3,17 @@ import TicketList from './TicketList';
 import Header from './Header';
 // import { v1 } from 'uuid';
 import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Moment from 'moment';
 import Admin from './Admin';
 import NewTicketControl from './NewTicketControl';
+import { connect } from 'react-redux';
 
 class App extends React.Component{
 //there is only one state object, w/ multiple key-value pairs. We will mutate individual state slices.
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       masterTicketList: {},
       selectedTicket: null
@@ -62,9 +65,9 @@ class App extends React.Component{
       <div>
         <Header/>
         <Switch>
-          <Route exact path='/' render={()=><TicketList ticketList={this.state.masterTicketList} />} />
+          <Route exact path='/' render={()=><TicketList ticketList={this.props.masterTicketList} />} />
           <Route path='/newticket' render={()=><NewTicketControl  />} />
-          <Route path='/admin' render={(props)=><Admin ticketList={this.state.masterTicketList} currentRouterPath={props.location.pathname}
+          <Route path='/admin' render={(props)=><Admin ticketList={this.props.masterTicketList} currentRouterPath={props.location.pathname}
           onTicketSelection={this.handleChangingSelectedTicket}
           selectedTicket={this.state.selectedTicket}/>} />
         </Switch>
@@ -72,5 +75,14 @@ class App extends React.Component{
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    masterTicketList: state
+  }
+}
 
-export default App;
+App.propTypes = {
+  masterTicketList: PropTypes.object
+};
+
+export default connect(mapStateToProps) (App);
