@@ -36,4 +36,24 @@ describe('ticketListReducer', () => {
     });
   });
 
+  test('Should add freshly-calculated Moment-formatted wait time to ticket entry', () => {
+    const { names, location, issue, timeOpen, id } = sampleTicketData;
+    action = {
+      type: 'UPDATE_TIME',
+      formattedWaitTime: '4 minutes',
+      id: id
+    };
+    expect(ticketListReducer({ [id] : sampleTicketData }, action)).toEqual({
+      [id] : {
+        names: names,
+        location: location,
+        issue: issue,
+        timeOpen: timeOpen,
+        id: id,
+        formattedWaitTime: '4 minutes'
+      }
+    });
+  });
+  // Instead of leaving expect()'s first argument blank, as we've done in other tests, we pass { [id] : sampleTicketData }. The first argument to expect() holds initial state. By passing { [id] : sampleTicketData } we ensure the store includes a single ticket when this test runs: the sampleTicketData stored under its id. We set default state for this test because we cannot test the action and reducer's ability to update ticket data without a ticket in our store!
+
 });
