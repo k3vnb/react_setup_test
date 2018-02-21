@@ -1,4 +1,5 @@
 import ticketListReducer from './../../src/reducers/ticket-list-reducer';
+import Moment from 'moment';
 
 describe('ticketListReducer', () => {
 
@@ -55,5 +56,27 @@ describe('ticketListReducer', () => {
     });
   });
   // Instead of leaving expect()'s first argument blank, as we've done in other tests, we pass { [id] : sampleTicketData }. The first argument to expect() holds initial state. By passing { [id] : sampleTicketData } we ensure the store includes a single ticket when this test runs: the sampleTicketData stored under its id. We set default state for this test because we cannot test the action and reducer's ability to update ticket data without a ticket in our store!
+  test('New ticket should include Moment-formatted wait times', () => {
+    const { names, location, issue, timeOpen, id } = sampleTicketData;
+    action = {
+      type: 'ADD_TICKET',
+      names: names,
+      location: location,
+      issue: issue,
+      timeOpen: timeOpen,
+      id: id,
+      formattedWaitTime: new Moment().fromNow(true)
+    };
+    expect(ticketListReducer({}, action)).toEqual({
+      [id] : {
+        names: names,
+        location: location,
+        issue: issue,
+        timeOpen: timeOpen,
+        id: id,
+        formattedWaitTime: 'a few seconds'
+      }
+    });
+  });
 
 });
