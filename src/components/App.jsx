@@ -11,16 +11,16 @@ import { connect } from 'react-redux';
 
 class App extends React.Component{
 //there is only one state object, w/ multiple key-value pairs. We will mutate individual state slices.
-  constructor(props) {
-    super(props);
-    console.log(props);
-    this.state = {
-      masterTicketList: {},
-      selectedTicket: null
-    };
+  // constructor(props) {
+  //   super(props);
+  //   console.log(props);
+  //   this.state = {
+  //     masterTicketList: {},
+  //     selectedTicket: null
+  //   };
     // this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
-    this.handleChangingSelectedTicket = this.handleChangingSelectedTicket.bind(this);
-  }
+  //   this.handleChangingSelectedTicket = this.handleChangingSelectedTicket.bind(this);
+  // }
 
   componentDidMount(){
     this.waitTimeUpdateTimer = setInterval(() =>
@@ -44,9 +44,9 @@ class App extends React.Component{
     // this.setState({masterTicketList: newMasterTicketList});
   }
 
-  handleChangingSelectedTicket(ticketId){
-    this.setState({selectedTicket: ticketId});
-  }
+  // handleChangingSelectedTicket(ticketId){
+  //   this.setState({selectedTicket: ticketId});
+  // } Gone with the redux refactor re: ticket & admin
 
 //Object.assign creates copies of objects & adds new content to those copies in a single method call. It takes 3 args: ({target}, source obj/slice of state we're updating, source obj, source obj/single key-val pair, newTicket.id is the key, and the entire newTicket obj is the value)
   // handleAddingNewTicketToList(newTicket){
@@ -67,9 +67,8 @@ class App extends React.Component{
         <Switch>
           <Route exact path='/' render={()=><TicketList ticketList={this.props.masterTicketList} />} />
           <Route path='/newticket' render={()=><NewTicketControl  />} />
-          <Route path='/admin' render={(props)=><Admin ticketList={this.props.masterTicketList} currentRouterPath={props.location.pathname}
-          onTicketSelection={this.handleChangingSelectedTicket}
-          selectedTicket={this.state.selectedTicket}/>} />
+          <Route path='/admin' render={(props)=><Admin  currentRouterPath={props.location.pathname}
+          />} />
         </Switch>
       </div>
     );
@@ -78,8 +77,8 @@ class App extends React.Component{
 const mapStateToProps = state => {
   return {
     masterTicketList: state.masterTicketList
-  }
-}
+  };
+};
 
 App.propTypes = {
   masterTicketList: PropTypes.object
