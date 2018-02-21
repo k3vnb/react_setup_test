@@ -63,7 +63,7 @@ class App extends React.Component{
 // onNewTicketCreation={this.handleAddingNewTicketToList} <--extracted from Route tag
 
   render(){
-    console.table(this.state.masterTicketList);
+    // console.table(this.state.masterTicketList);
     return (
       <div>
         <Header/>
