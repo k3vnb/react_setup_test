@@ -34,14 +34,14 @@ class App extends React.Component{
   }
 
   updateTicketElapsedWaitTime(){
-    let newMasterTicketList = Object.assign({}, this.state.masterTicketList);
-    Object.keys(newMasterTicketList).forEach(ticketId => {
-      newMasterTicketList[ticketId].formattedWaitTime = (newMasterTicketList[ticketId].timeOpen).fromNow(true);
-    });
+    // let newMasterTicketList = Object.assign({}, this.state.masterTicketList);
+    // Object.keys(newMasterTicketList).forEach(ticketId => {
+    //   newMasterTicketList[ticketId].formattedWaitTime = (newMasterTicketList[ticketId].timeOpen).fromNow(true);
+    // });
     //WHEN IT WAS AN ARRAY --> newMasterTicketList.forEach((ticket) =>
     //   ticket.formattedWaitTime = (ticket.timeOpen).fromNow(true)
     // );
-    this.setState({masterTicketList: newMasterTicketList});
+    // this.setState({masterTicketList: newMasterTicketList});
   }
 
   handleChangingSelectedTicket(ticketId){
