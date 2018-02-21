@@ -3,6 +3,8 @@ import Moment from 'moment';
 // import PropTypes from 'prop-types';
 import { v1 } from 'uuid';
 import { connect } from 'react-redux';
+import c from './../constants';
+
 
 function NewTicketForm(props){
   // console.log(props);
@@ -14,7 +16,7 @@ function NewTicketForm(props){
     const { dispatch } = props;
       event.preventDefault();
       const action = {
-        type: 'ADD_TICKET',
+        type: c.ADD_TICKET,
         id: v1(),
         names: _names.value,
         location: _location.value,
