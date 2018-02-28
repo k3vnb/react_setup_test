@@ -1,10 +1,11 @@
 import React from 'react';
-import Moment from 'moment';
+// import Moment from 'moment';
 // import PropTypes from 'prop-types';
-import { v1 } from 'uuid';
+// import { v1 } from 'uuid';
 import { connect } from 'react-redux';
 import constants from './../constants';
 const { c } = constants;
+import { addTicket } from './../actions';
 
 
 function NewTicketForm(props){
@@ -15,24 +16,22 @@ function NewTicketForm(props){
 
   function handleNewTicketFormSubmission(event) {
     const { dispatch } = props;
-      event.preventDefault();
-      const action = {
-        type: c.ADD_TICKET,
-        id: v1(),
-        names: _names.value,
-        location: _location.value,
-        issue: _issue.value,
-        timeOpen: new Moment(),
-        formattedWaitTime: new Moment().fromNow(true)
-      };
-      dispatch(action);
-      //above dispatches action to our ticket-list-reducer.js 'ADD_TICKET' block
-      //below is no longer necessary
-      // props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, timeOpen: new Moment()});
-      _names.value = '';
-      _location.value = '';
-      _issue.value = '';
-    }
+    event.preventDefault();
+    // const action = {
+    //   type: c.ADD_TICKET,
+    //   id: v1(),
+    //   names: _names.value,
+    //   location: _location.value,
+    //   issue: _issue.value,
+    //   timeOpen: new Moment(),
+    //   formattedWaitTime: new Moment().fromNow(true)
+    // };
+    dispatch(addTicket(_names.value, _location.value, _issue.value));
+
+    _names.value = '';
+    _location.value = '';
+    _issue.value = '';
+  }
 
   return (
     <div>

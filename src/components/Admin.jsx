@@ -16,7 +16,7 @@ function Admin(props){
       <TicketList
         ticketList={props.ticketList}
         currentRouterPath={props.currentRouterPath}
-        />
+      />
     </div>
   );
 }
@@ -25,7 +25,7 @@ Admin.propTypes = {
   ticketList: PropTypes.object,
   currentRouterPath: PropTypes.string.isRequired,
   // onTicketSelection: PropTypes.func.isRequired,
-  selectedTicket: PropTypes.string
+  selectedTicket: PropTypes.object
 };
 
 const mapStateToProps = state => {

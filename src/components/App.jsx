@@ -4,7 +4,7 @@ import Header from './Header';
 // import { v1 } from 'uuid';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Moment from 'moment';
+// import Moment from 'moment';
 import Admin from './Admin';
 import NewTicketControl from './NewTicketControl';
 import { connect } from 'react-redux';
@@ -21,14 +21,14 @@ class App extends React.Component{
   //     masterTicketList: {},
   //     selectedTicket: null
   //   };
-    // this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
+  // this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
   //   this.handleChangingSelectedTicket = this.handleChangingSelectedTicket.bind(this);
   // }
 
   componentDidMount(){
     this.waitTimeUpdateTimer = setInterval(() =>
       this.updateTicketElapsedWaitTime(),
-      60000
+    60000
     );
   }
 
@@ -54,7 +54,7 @@ class App extends React.Component{
   //   this.setState({selectedTicket: ticketId});
   // } Gone with the redux refactor re: ticket & admin
 
-//Object.assign creates copies of objects & adds new content to those copies in a single method call. It takes 3 args: ({target}, source obj/slice of state we're updating, source obj, source obj/single key-val pair, newTicket.id is the key, and the entire newTicket obj is the value)
+  //Object.assign creates copies of objects & adds new content to those copies in a single method call. It takes 3 args: ({target}, source obj/slice of state we're updating, source obj, source obj/single key-val pair, newTicket.id is the key, and the entire newTicket obj is the value)
   // handleAddingNewTicketToList(newTicket){
   //   let newTicketId = v1();
   //   let newMasterTicketList = Object.assign({}, this.state.masterTicketList, {
@@ -63,7 +63,7 @@ class App extends React.Component{
   //   newMasterTicketList[newTicketId].formattedWaitTime = newMasterTicketList[newTicketId].timeOpen.fromNow(true);
   //   this.setState({masterTicketList: newMasterTicketList});
   // }
-// onNewTicketCreation={this.handleAddingNewTicketToList} <--extracted from Route tag
+  // onNewTicketCreation={this.handleAddingNewTicketToList} <--extracted from Route tag
 
   render(){
     // console.table(this.state.masterTicketList);

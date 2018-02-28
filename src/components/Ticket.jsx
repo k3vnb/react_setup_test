@@ -26,8 +26,8 @@ function Ticket(props){
   if (props.currentRouterPath === '/admin') {
     return (
       <div onClick={() => {handleSavingSelectedTicket(props.ticketId);}}>
-      {ticketInfo}
-    </div>
+        {ticketInfo}
+      </div>
     );
   } else {
     return (
