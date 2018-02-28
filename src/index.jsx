@@ -10,7 +10,19 @@ import { HashRouter } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
 import persistDataLocally from './middleware/persist-data-locally';
 
-const store = createStore(rootReducer, applyMiddleware(persistDataLocally));
+let retrievedState;
+try {
+  retrievedState = localStorage.getItem('reduxStore');
+  if (retrievedState === null){
+    retrievedState = {};
+  }
+  retrievedState = JSON.parse(retrievedState);
+} catch (err){
+  retrievedState = {};
+}
+
+const store = createStore(rootReducer, retrievedState, applyMiddleware(persistDataLocally));
+
 
 let unsubscribe = store.subscribe(() =>
   console.log(store.getState())
@@ -26,6 +38,7 @@ const render = (Component) => {
     document.getElementById('react-app-root')
   );
 };
+
 
 render(App);
 /*eslint-disable */
