@@ -1,5 +1,6 @@
-import c from './../constants';
-//c is a common naming convention for importing constants. And the url path works b/c /constants has an index.js file. (note: Webpack thing only)
+import constants from './../constants';
+const { c } = constants;
+
 
 export default (state = {}, action) => {
   let newState;

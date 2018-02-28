@@ -8,7 +8,8 @@ import Moment from 'moment';
 import Admin from './Admin';
 import NewTicketControl from './NewTicketControl';
 import { connect } from 'react-redux';
-import c from './../constants';
+import constants from './../constants';
+const { c } = constants;
 
 
 class App extends React.Component{

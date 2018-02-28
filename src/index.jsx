@@ -8,7 +8,7 @@ import rootReducer from './reducers/index';
 import { AppContainer } from 'react-hot-loader';
 import { HashRouter } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
-import persistDataLocally from './middleware/persist-data-locally';
+
 
 let retrievedState;
 try {
@@ -21,7 +21,7 @@ try {
   retrievedState = {};
 }
 
-const store = createStore(rootReducer, retrievedState, applyMiddleware(persistDataLocally));
+const store = createStore(rootReducer);
 
 
 let unsubscribe = store.subscribe(() =>
