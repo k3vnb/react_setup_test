@@ -10,7 +10,7 @@ import NewTicketControl from './NewTicketControl';
 import { connect } from 'react-redux';
 import constants from './../constants';
 const { c } = constants;
-
+import * as actions from './../actions';
 
 class App extends React.Component{
 //there is only one state object, w/ multiple key-value pairs. We will mutate individual state slices.
@@ -24,6 +24,12 @@ class App extends React.Component{
   // this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
   //   this.handleChangingSelectedTicket = this.handleChangingSelectedTicket.bind(this);
   // }
+
+  componentWillMount(){
+    const { dispatch } = this.props;
+    const { watchFirebaseTicketsRef } = actions;
+    dispatch(watchFirebaseTicketsRef());
+  }
 
   componentDidMount(){
     this.waitTimeUpdateTimer = setInterval(() =>
@@ -40,7 +46,8 @@ class App extends React.Component{
     const { dispatch } = this.props;
     Object.keys(this.props.masterTicketList).map(ticketId => {
       const ticket = this.props.masterTicketList[ticketId];
-      const newFormattedWaitTime = ticket.timeOpen.fromNow(true);
+      const newFormattedWaitTime = new Moment(ticket.timeOpen).from(new Moment());
+      // ticket.timeOpen.fromNow(true);
       const action = {
         type: c.UPDATE_TIME,
         id: ticketId,
